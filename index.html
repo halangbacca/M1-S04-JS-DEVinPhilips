@@ -52,6 +52,41 @@
           </div>
         </form>
       </section>
+
+      <section class="section">
+        <h2>Ações</h2>
+
+        <form id="form-acoes" class="form">
+          <div>
+            <label for="operacao">Operação:</label>
+            <select id="operacao" required>
+              <option value="Saque">Saque</option>
+              <option value="Depósito">Depósito</option>
+              <option value="Saldo">Consulta de Saldo</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="valor">Valor:</label>
+            <input id="valor" type="number" required />
+          </div>
+
+          <div>
+            <label for="conta">Conta:</label>
+            <input id="conta" type="number" required />
+          </div>
+
+          <div>
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" required />
+          </div>
+
+          <div>
+            <button type="reset" class="button">Limpar</button>
+            <button type="submit" class="button">Confirmar</button>
+          </div>
+        </form>
+      </section>
     </main>
     <footer class="footer">
       <p>DEVinBank | Itajaí (SC)</p>
