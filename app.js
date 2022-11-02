@@ -9,37 +9,39 @@ const validarSenha = (evento) => {
 
 const cadastrarConta = (evento) => {
   evento.preventDefault();
-
   if (validarSenha(evento)) {
     const conta = {
       nome: evento.target.nome.value,
       cpf: evento.target.cpf.value,
       celular: evento.target.celular.value,
       senha: evento.target.senha.value,
-      conta: Math.floor(1000 + Math.random() * 90000),
+      numeroConta: Math.floor(1000 + Math.random() * 90000),
       saldo: 0,
     };
 
     contasClientes.push(conta);
-    alert(`Conta criada com sucesso! Número: ${conta.conta}`);
+    alert(`Conta criada com sucesso! Número: ${conta.numeroConta}`);
   } else {
     alert("Senhas não conferem");
   }
 };
 
+//Cria uma variável que representa os dados da tag form do HTML
 const form = document.getElementById("form");
-form.addEventListener("submit", cadastrarConta);
+
+//Adiciona um evento à tag submit do HTML
+form.addEventListener("submit", cadastrarConta); 
 
 // Funcões operações
 const trocarOperacao = (evento) => {
+  //Cria uma variável que representa os dados do elemento com a ID="valor"
   const valor = document.getElementById("valor");
-
-  valor.disabled = evento.target.value === "SALDO";
+  //Desabilita o elemento com a ID="valor", quando o valor selecionado for "Saldo"
+  valor.disabled = evento.target.value === "Saldo";
 };
 
 const obterConta = (conta) => {
-  const contaCliente = contasClientes.find((c) => c.conta === conta);
-
+  const contaCliente = contasClientes.find((contaAtual) => contaAtual.numeroConta === conta);
   return contaCliente;
 };
 
@@ -48,7 +50,7 @@ const sacar = (conta, valor) => {
     if (validarSaldo(conta, valor)) {
       let saldoAtual;
       const contasAtualizadas = contasClientes.map((c) => {
-        if (c.conta === conta) {
+        if (c.numeroConta === conta) {
           saldoAtual = c.saldo - valor;
           return { ...c, saldo: saldoAtual };
         }
@@ -71,7 +73,7 @@ const depositar = (conta, valor) => {
     const contaCliente = { ...obterConta(conta) };
     contaCliente.saldo += valor;
 
-    const contasAtualizadas = contasClientes.filter((c) => c.conta !== conta);
+    const contasAtualizadas = contasClientes.filter((c) => c.numeroConta !== conta);
     contasAtualizadas.push(contaCliente);
     contasClientes = contasAtualizadas;
 
@@ -106,7 +108,7 @@ const validarSaldo = (conta, valor) => {
 const efetuarOperacao = (evento) => {
   evento.preventDefault();
 
-  const conta = parseInt(evento.target.conta.value);
+  const conta = parseInt(evento.target.numeroConta.value);
   const senha = evento.target.senha.value;
   const valor = parseInt(evento.target.valor.value);
 
