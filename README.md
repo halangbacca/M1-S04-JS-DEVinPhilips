@@ -1,4 +1,4 @@
-# Conta bancária
+# DEVinBank
 
 Desenvolvimento de um sistema de conta bancária para pessoa física, contemplando:
 - Cadastro de clientes
